@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TvService} from '../../services/tv.service';
+import {MovieDbService} from '../../services/movie-db.service';
 
 @Component({
   selector: 'app-discover-shows',
@@ -9,15 +9,15 @@ import {TvService} from '../../services/tv.service';
 export class DiscoverShowsComponent implements OnInit {
   tvShows: any;
 
-  constructor(private tvService: TvService) { }
+  constructor(private movieDbService: MovieDbService) { }
 
 
   getThumbnailBase() {
-    return this.tvService.getThumbnailBase();
+    return this.movieDbService.getThumbnailBase();
   }
 
   ngOnInit() {
-    this.tvService.getTvShows()
+    this.movieDbService.getTvShows()
       .subscribe(tvShows => this.tvShows = tvShows);
   }
 

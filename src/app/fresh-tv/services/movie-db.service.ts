@@ -8,10 +8,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class TvService {
+export class MovieDbService {
   IMAGE_BASE_PATH = 'http://image.tmdb.org/t/p/';
-  DISCOVER_BASE_PATH = 'https://api.themoviedb.org/3/discover/tv?api_key=' + THE_MOVIE_DB_API_KEY;
-  SEARCH_BASE_PATH = 'https://api.themoviedb.org/3/search/tv?api_key=' + THE_MOVIE_DB_API_KEY;
+  DISCOVER_BASE_PATH = 'https://api.themoviedb.org/3/discover/tv';
+  SEARCH_BASE_PATH = 'https://api.themoviedb.org/3/search/tv';
+  SEARCH_BY_ID_PATH = 'https://api.themoviedb.org/3/tv/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +22,7 @@ export class TvService {
 
   getTvShows() {
     const params = new HttpParams()
+      .set('api_key', THE_MOVIE_DB_API_KEY)
       .set('language', 'en-US')
       .set('sort_by', 'popularity.desc')
       .set('page', '1')
@@ -29,6 +31,14 @@ export class TvService {
 
     return this.http.get(this.DISCOVER_BASE_PATH, {params: params})
       .map(response => response['results']);
+  }
+
+  getTvShowById(id) {
+    const params = new HttpParams()
+      .set('api_key', THE_MOVIE_DB_API_KEY)
+      .set('language', 'en-US');
+
+    return this.http.get(this.SEARCH_BY_ID_PATH + id, {params: params});
   }
 
   search(queries: Observable<string>) {
@@ -40,6 +50,7 @@ export class TvService {
 
   searchShows(query) {
     const params = new HttpParams()
+      .set('api_key', THE_MOVIE_DB_API_KEY)
       .set('language', 'en-US')
       .set('page', '1')
       .set('query', query);

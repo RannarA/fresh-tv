@@ -9,16 +9,19 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import {TvService} from './services/tv.service';
+import {MovieDbService} from './services/movie-db.service';
 import { TvShowGridComponent } from './components/tv-show-grid/tv-show-grid.component';
 import {RouterModule, Routes} from '@angular/router';
 import { TvShowsComponent } from './containers/tv-shows/tv-shows.component';
 import { DiscoverShowsComponent } from './containers/discover-shows/discover-shows.component';
 import { SearchShowsComponent } from './containers/search-shows/search-shows.component';
+import {WatchlistService} from './services/watchlist.service';
+import { WatchlistComponent } from './containers/watchlist/watchlist.component';
 
 const appRoutes: Routes = [
   { path: '', component: DiscoverShowsComponent },
   { path: 'search', component: SearchShowsComponent },
+  { path: 'watchlist', component: WatchlistComponent },
   // {
   //   path: 'heroes',
   //   component: HeroListComponent,
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     TvShowGridComponent,
     TvShowsComponent,
     DiscoverShowsComponent,
-    SearchShowsComponent
+    SearchShowsComponent,
+    WatchlistComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -58,7 +62,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     // services
-    TvService
+    MovieDbService,
+    WatchlistService
   ],
   exports: [
     FreshTvComponent

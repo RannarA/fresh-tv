@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import 'rxjs/add/operator/concat';
+import {WatchlistService} from "../../services/watchlist.service";
 
 @Component({
   selector: 'app-tv-show-grid',
@@ -11,7 +12,11 @@ export class TvShowGridComponent implements OnInit {
   @Input() tvShows: any;
   @Input() imageBase: string;
 
-  constructor() { }
+  constructor(private watchlistService: WatchlistService) { }
+
+  addToWatchlist(showId) {
+    this.watchlistService.addToWatchlist(showId);
+  }
 
   ngOnInit() {
   }

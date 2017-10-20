@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
-import {TvService} from '../../services/tv.service';
+import {MovieDbService} from '../../services/movie-db.service';
 
 @Component({
   selector: 'app-search-shows',
@@ -13,10 +13,10 @@ export class SearchShowsComponent implements OnInit {
   searchQuery = new Subject<string>();
   tvShows: any;
 
-  constructor(private route: ActivatedRoute, private tvService: TvService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private movieDbService: MovieDbService, private router: Router) { }
 
   getThumbnailBase() {
-    return this.tvService.getThumbnailBase();
+    return this.movieDbService.getThumbnailBase();
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class SearchShowsComponent implements OnInit {
         }
       });
 
-    this.tvService.search(this.searchQuery)
+    this.movieDbService.search(this.searchQuery)
       .subscribe(searchResults => this.tvShows = searchResults);
   }
 

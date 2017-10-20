@@ -1,0 +1,14 @@
+<mat-grid-list cols="8" rowHeight="2:4">
+  <mat-grid-tile
+    *ngFor="let show of tvShows">
+    <mat-card class="movie-card--preview">
+      <mat-card-content>
+        <img mat-card-image src="{{imageBase + show.poster_path}}" alt="Poster">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

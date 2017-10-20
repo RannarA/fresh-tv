@@ -5,7 +5,7 @@ import {FreshTvComponent} from './fresh-tv/fresh-tv.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatGridListModule, MatInputModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatInputModule, MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -53,7 +53,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [
     // services

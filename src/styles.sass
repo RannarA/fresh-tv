@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+@import "~@angular/material/_theming.scss"
+@include mat-core()
+
+$freshtv-app-primary: mat-palette($mat-blue-grey)
+$freshtv-app-accent: mat-palette($mat-amber, A200, A100, A400)
+
+$freshtv-app-warn: mat-palette($mat-red)
+
+$freshtv-app-theme: mat-light-theme($freshtv-app-primary, $freshtv-app-accent, $freshtv-app-warn)
+
+@include angular-material-theme($freshtv-app-theme)
+
 
 html, body
   padding: 0

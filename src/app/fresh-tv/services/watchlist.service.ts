@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/mergeAll';
+import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/do';
 import {MovieDbService} from './movie-db.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class WatchlistService {
 
-  tmpList = [1412, 1418];
-
-  constructor(private movieDbService: MovieDbService) { }
+  constructor(private http: HttpClient,
+              private movieDbService: MovieDbService) { }
 
   addToWatchlist(id: number) {
-    this.tmpList.push(id);
+    const data = {
+      showId: id
+    };
+
+    return this.http.post('/api/favourites', data);
   }
 
   getWatchlist() {
-    return Observable.of(this.tmpList)
-      .mergeMap(data => data)
-      .mergeMap(showId => this.movieDbService.getTvShowById(showId));
+    return this.http.get('/api/favourites')
+      .mergeMap((favouritesArray: any) => favouritesArray)
+      .map(favourite => favourite['showId'])
+      .mergeMap(showId => this.movieDbService.getTvShowById(showId))
   }
-
 }

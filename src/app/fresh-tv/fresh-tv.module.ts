@@ -19,19 +19,9 @@ import {WatchlistService} from './services/watchlist.service';
 import { WatchlistComponent } from './containers/watchlist/watchlist.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DiscoverShowsComponent },
+  { path: '', component: WatchlistComponent },
   { path: 'search', component: SearchShowsComponent },
-  { path: 'watchlist', component: WatchlistComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
-  // { path: '**', component: PageNotFoundComponent }
+  { path: 'discover', component: DiscoverShowsComponent },
 ];
 
 @NgModule({

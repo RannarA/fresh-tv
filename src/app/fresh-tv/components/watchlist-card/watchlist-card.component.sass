@@ -1,0 +1,32 @@
+mat-card
+  height: 275px
+  width: 185px
+  background: no-repeat center
+  padding: 0
+
+  .overlay
+    height: 100%
+    width: 100%
+    cursor: pointer
+
+    display: flex
+    align-items: center
+    justify-content: center
+
+    background-color: rgba(69, 90, 100, 0)
+
+    -webkit-transition: all .3s ease
+    -moz-transition: all .3s ease
+    -ms-transition: all .3s ease
+    -o-transition: all .3s ease
+    transition: all .3s ease
+
+    .card-data
+      opacity: 0
+      color: #fafafa
+
+    &:hover
+      background-color: rgba(69, 90, 100, .5)
+
+      .card-data
+        opacity: 1

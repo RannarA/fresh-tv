@@ -17,6 +17,8 @@ import { DiscoverShowsComponent } from './containers/discover-shows/discover-sho
 import { SearchShowsComponent } from './containers/search-shows/search-shows.component';
 import {WatchlistService} from './services/watchlist.service';
 import { WatchlistComponent } from './containers/watchlist/watchlist.component';
+import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
+import { AddShowCardComponent } from './components/add-show-card/add-show-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: WatchlistComponent },
@@ -33,7 +35,9 @@ const appRoutes: Routes = [
     TvShowsComponent,
     DiscoverShowsComponent,
     SearchShowsComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    WatchlistCardComponent,
+    AddShowCardComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -1,0 +1,7 @@
+<mat-card [style.backgroundImage]="'url(' + imageBase + showData.poster_path + ')'">
+  <div class="overlay">
+    <button mat-fab (click)="addToWatchlist(showData.id)">
+      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+    </button>
+  </div>
+</mat-card>

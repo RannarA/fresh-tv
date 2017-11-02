@@ -11,13 +11,9 @@ export class TvShowGridComponent implements OnInit {
 
   @Input() tvShows: any;
   @Input() imageBase: string;
+  @Input() isWatchlist: boolean;
 
-  constructor(private watchlistService: WatchlistService) { }
-
-  addToWatchlist(showId) {
-    this.watchlistService.addToWatchlist(showId)
-      .subscribe(response => console.log(response));
-  }
+  constructor() { }
 
   ngOnInit() {
   }

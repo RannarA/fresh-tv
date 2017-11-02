@@ -1,11 +1,6 @@
 <mat-grid-list cols="8" rowHeight="2:3">
   <mat-grid-tile *ngFor="let show of tvShows">
-    <mat-card [style.backgroundImage]="'url(' + imageBase + show.poster_path + ')'">
-      <div class="overlay">
-        <button mat-fab (click)="addToWatchlist(show.id)">
-          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-        </button>
-      </div>
-    </mat-card>
+    <app-add-show-card *ngIf="!isWatchlist" [imageBase]="imageBase" [showData]="show"></app-add-show-card>
+    <app-watchlist-card *ngIf="isWatchlist" [imageBase]="imageBase" [showData]="show"></app-watchlist-card>
   </mat-grid-tile>
 </mat-grid-list>

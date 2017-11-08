@@ -2,7 +2,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FreshTvComponent} from './fresh-tv/fresh-tv.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatInputModule, MatSidenavModule,
@@ -20,6 +20,7 @@ import { WatchlistComponent } from './containers/watchlist/watchlist.component';
 import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
 import { AddShowCardComponent } from './components/add-show-card/add-show-card.component';
 import {AuthService} from './services/auth.service';
+import {TokenInterceptor} from './auth/token.interceptor';
 
 const appRoutes: Routes = [
   { path: '', component: WatchlistComponent },
@@ -60,6 +61,11 @@ const appRoutes: Routes = [
     AuthService,
     MovieDbService,
     WatchlistService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   exports: [
     FreshTvComponent

@@ -25,7 +25,7 @@ import {TokenInterceptor} from './auth/token.interceptor';
 const appRoutes: Routes = [
   { path: '', component: WatchlistComponent },
   { path: 'search', component: SearchShowsComponent },
-  { path: 'discover', component: DiscoverShowsComponent },
+  { path: 'discover', component: DiscoverShowsComponent }
 ];
 
 @NgModule({

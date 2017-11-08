@@ -2,6 +2,10 @@
   <div class="overlay">
     <div class="card-data">
       {{showData.last_air_date}}
+
+      <button mat-fab (click)="removeFromWatchlist(showData.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </div>
 </mat-card>

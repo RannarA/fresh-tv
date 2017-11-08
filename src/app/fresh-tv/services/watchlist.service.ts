@@ -21,6 +21,10 @@ export class WatchlistService {
     return this.http.post('/api/favourites', data);
   }
 
+  removeFromWatchlist(showId: number) {
+    return this.http.delete('/api/favourites/' + showId)
+  }
+
   getWatchlist() {
     return this.http.get('/api/favourites')
       .mergeMap((favouritesArray: any) => favouritesArray)

@@ -19,6 +19,7 @@ import {WatchlistService} from './services/watchlist.service';
 import { WatchlistComponent } from './containers/watchlist/watchlist.component';
 import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
 import { AddShowCardComponent } from './components/add-show-card/add-show-card.component';
+import {AuthService} from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: '', component: WatchlistComponent },
@@ -52,12 +53,13 @@ const appRoutes: Routes = [
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     // services
+    AuthService,
     MovieDbService,
-    WatchlistService
+    WatchlistService,
   ],
   exports: [
     FreshTvComponent

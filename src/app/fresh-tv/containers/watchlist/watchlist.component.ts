@@ -18,7 +18,7 @@ export class WatchlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('init watchlist');\
+    console.log('init watchlist');
     this.watchlistService.getWatchlist()
       .subscribe(tvShowData => {
         this.tvShows.push(tvShowData)

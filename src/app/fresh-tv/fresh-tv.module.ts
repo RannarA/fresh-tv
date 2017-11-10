@@ -5,7 +5,8 @@ import {FreshTvComponent} from './fresh-tv/fresh-tv.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatInputModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -23,13 +24,14 @@ import {AuthService} from './services/auth.service';
 import {TokenInterceptor} from './auth/token.interceptor';
 import {AuthGuardService} from './auth/auth-guard.service';
 import { AuthenticationComponent } from './containers/authentication/authentication.component';
+import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/discover', pathMatch: 'full' },
   { path: 'watchlist', component: WatchlistComponent },
   { path: 'search', component: SearchShowsComponent },
   { path: 'discover', component: DiscoverShowsComponent },
-  { path: 'callback', component: AuthenticationComponent }
+  { path: 'authenticate', component: AuthenticationComponent }
 ];
 
 @NgModule({
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     WatchlistComponent,
     WatchlistCardComponent,
     AddShowCardComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    SignInFormComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -60,6 +63,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatGridListModule,
     MatIconModule,
+    MatFormFieldModule
   ],
   providers: [
     // services

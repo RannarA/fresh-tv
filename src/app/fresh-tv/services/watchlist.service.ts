@@ -14,19 +14,20 @@ export class WatchlistService {
               private movieDbService: MovieDbService) { }
 
   addToWatchlist(id: number) {
+    console.log('add')
     const data = {
       showId: id
     };
 
-    return this.http.post('/api/favourites', data);
+    return this.http.post('/api/watchlist', data);
   }
 
   removeFromWatchlist(showId: number) {
-    return this.http.delete('/api/favourites/' + showId)
+    return this.http.delete('/api/watchlist/' + showId)
   }
 
   getWatchlist() {
-    return this.http.get('/api/favourites')
+    return this.http.get('/api/watchlist')
       .mergeMap((favouritesArray: any) => favouritesArray)
       .map(favourite => favourite['showId'])
       .mergeMap(showId => this.movieDbService.getTvShowById(showId))

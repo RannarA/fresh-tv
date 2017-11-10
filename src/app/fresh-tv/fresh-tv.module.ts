@@ -1,6 +1,6 @@
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {FreshTvComponent} from './fresh-tv/fresh-tv.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -25,13 +25,14 @@ import {TokenInterceptor} from './auth/token.interceptor';
 import {AuthGuardService} from './auth/auth-guard.service';
 import { AuthenticationComponent } from './containers/authentication/authentication.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
+import {AuthErrorHandlerService} from './handler/auth-error-handler.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/discover', pathMatch: 'full' },
-  { path: 'watchlist', component: WatchlistComponent },
+  { path: 'authenticate', component: AuthenticationComponent },
+  { path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuardService] },
   { path: 'search', component: SearchShowsComponent },
-  { path: 'discover', component: DiscoverShowsComponent },
-  { path: 'authenticate', component: AuthenticationComponent }
+  { path: 'discover', component: DiscoverShowsComponent }
 ];
 
 @NgModule({
@@ -74,6 +75,10 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: AuthErrorHandlerService
     },
     AuthGuardService
   ],

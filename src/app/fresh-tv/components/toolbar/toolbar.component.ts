@@ -17,11 +17,8 @@ export class ToolbarComponent implements OnInit {
     })
   }
 
-  login() {
-    this.authService.login();
-  }
-  logout() {
-    this.authService.logout();
+  signOut() {
+    this.authService.signOut();
   }
 
   ngOnInit() {

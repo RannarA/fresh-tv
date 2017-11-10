@@ -10,6 +10,7 @@ export class TvShowsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('init')
   }
 
 }

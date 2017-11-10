@@ -21,11 +21,15 @@ import { WatchlistCardComponent } from './components/watchlist-card/watchlist-ca
 import { AddShowCardComponent } from './components/add-show-card/add-show-card.component';
 import {AuthService} from './services/auth.service';
 import {TokenInterceptor} from './auth/token.interceptor';
+import {AuthGuardService} from './auth/auth-guard.service';
+import { AuthenticationComponent } from './containers/authentication/authentication.component';
 
 const appRoutes: Routes = [
-  { path: '', component: WatchlistComponent },
+  { path: '', redirectTo: '/discover', pathMatch: 'full' },
+  { path: 'watchlist', component: WatchlistComponent },
   { path: 'search', component: SearchShowsComponent },
-  { path: 'discover', component: DiscoverShowsComponent }
+  { path: 'discover', component: DiscoverShowsComponent },
+  { path: 'callback', component: AuthenticationComponent }
 ];
 
 @NgModule({
@@ -39,7 +43,8 @@ const appRoutes: Routes = [
     SearchShowsComponent,
     WatchlistComponent,
     WatchlistCardComponent,
-    AddShowCardComponent
+    AddShowCardComponent,
+    AuthenticationComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -65,7 +70,8 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AuthGuardService
   ],
   exports: [
     FreshTvComponent

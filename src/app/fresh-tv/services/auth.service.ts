@@ -17,7 +17,7 @@ export class AuthService {
 
   signOut() {
     this.tokenService.removeToken();
-    this.router.navigate(['/discover']);
+    this.router.navigate(['/search']);
   }
 
   isAuthenticated(): boolean {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {WatchlistService} from '../../services/watchlist.service';
 import {MovieDbService} from '../../services/movie-db.service';
 
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
@@ -21,9 +23,7 @@ export class WatchlistComponent implements OnInit {
     this.watchlistService.removeFromWatchlist(showId)
       .subscribe(result => {
         if (result['success']) {
-          // TODO there has to be better way
-          this.tvShows = [];
-          this.getWatchlist();
+          this.tvShows = _.filter(this.tvShows, show => show.id !== showId);
         }
       });
   }

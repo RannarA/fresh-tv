@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../models/user';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {TokenService} from '../../services/token.service';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -15,7 +16,8 @@ export class SignInFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private tokenService: TokenService) { }
 
   signIn() {
     const user: User = {
@@ -24,16 +26,13 @@ export class SignInFormComponent implements OnInit {
     };
 
     this.authService.signIn(user).subscribe(response => {
-      console.log('asdasd')
       if (response['success']) {
-        this.authService.setToken(response['token']);
+        this.tokenService.setToken(response['token']);
         this.router.navigate(['/watchlist'])
       } else {
         console.log('fail');
-        // this.signInForm.reset();
+        this.signInForm.reset();
       }
-    }, err => {
-      console.error(err);
     });
   }
 

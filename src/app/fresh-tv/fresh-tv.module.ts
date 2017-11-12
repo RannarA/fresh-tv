@@ -26,6 +26,7 @@ import {AuthGuardService} from './auth/auth-guard.service';
 import { AuthenticationComponent } from './containers/authentication/authentication.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import {AuthErrorHandlerService} from './handler/auth-error-handler.service';
+import {TokenService} from './services/token.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/discover', pathMatch: 'full' },
@@ -68,9 +69,6 @@ const appRoutes: Routes = [
   ],
   providers: [
     // services
-    AuthService,
-    MovieDbService,
-    WatchlistService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -80,7 +78,11 @@ const appRoutes: Routes = [
       provide: ErrorHandler,
       useClass: AuthErrorHandlerService
     },
-    AuthGuardService
+    AuthService,
+    MovieDbService,
+    WatchlistService,
+    AuthGuardService,
+    TokenService
   ],
   exports: [
     FreshTvComponent

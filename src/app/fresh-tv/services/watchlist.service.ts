@@ -14,7 +14,6 @@ export class WatchlistService {
               private movieDbService: MovieDbService) { }
 
   addToWatchlist(id: number) {
-    console.log('add')
     const data = {
       showId: id
     };

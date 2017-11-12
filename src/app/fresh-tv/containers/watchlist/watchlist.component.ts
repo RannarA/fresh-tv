@@ -19,15 +19,24 @@ export class WatchlistComponent implements OnInit {
 
   removeFromWatchList(showId: number) {
     this.watchlistService.removeFromWatchlist(showId)
-      .subscribe(result => console.log(result));
+      .subscribe(result => {
+        if (result['success']) {
+          // TODO there has to be better way
+          this.tvShows = [];
+          this.getWatchlist();
+        }
+      });
   }
 
-  ngOnInit() {
-    console.log('init watchlist');
+  getWatchlist() {
     this.watchlistService.getWatchlist()
       .subscribe(tvShowData => {
         this.tvShows.push(tvShowData)
       });
+  }
+
+  ngOnInit() {
+    this.getWatchlist();
   }
 
 }

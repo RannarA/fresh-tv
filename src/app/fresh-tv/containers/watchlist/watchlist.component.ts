@@ -17,6 +17,11 @@ export class WatchlistComponent implements OnInit {
     return this.movieDbService.getThumbnailBase();
   }
 
+  removeFromWatchList(showId: number) {
+    this.watchlistService.removeFromWatchlist(showId)
+      .subscribe(result => console.log(result));
+  }
+
   ngOnInit() {
     console.log('init watchlist');
     this.watchlistService.getWatchlist()

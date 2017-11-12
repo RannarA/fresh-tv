@@ -1,1 +1,5 @@
-<app-tv-show-grid [tvShows]="tvShows" [imageBase]="getThumbnailBase()"></app-tv-show-grid>
+<mat-grid-list cols="8" rowHeight="2:3">
+  <mat-grid-tile *ngFor="let show of tvShows">
+    <app-add-show-card [imageBase]="getThumbnailBase()" [showData]="show"></app-add-show-card>
+  </mat-grid-tile>
+</mat-grid-list>

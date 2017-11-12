@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WatchlistService} from '../../services/watchlist.service';
 
 @Component({
@@ -10,12 +10,12 @@ export class WatchlistCardComponent implements OnInit {
 
   @Input() imageBase: string;
   @Input() showData: any;
+  @Output() removeFromWatchList = new EventEmitter<number>();
 
-  constructor(private watchlistService: WatchlistService) { }
+  constructor() { }
 
   removeFromWatchlist(showId: number) {
-    this.watchlistService.removeFromWatchlist(showId)
-      .subscribe(response => console.log(response));
+    this.removeFromWatchList.emit(showId);
   }
 
   ngOnInit() {

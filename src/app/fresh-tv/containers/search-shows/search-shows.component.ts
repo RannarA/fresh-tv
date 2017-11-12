@@ -13,7 +13,7 @@ export class SearchShowsComponent implements OnInit {
   searchQuery = new Subject<string>();
   tvShows: any;
 
-  constructor(private route: ActivatedRoute, private movieDbService: MovieDbService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private movieDbService: MovieDbService) { }
 
   getThumbnailBase() {
     return this.movieDbService.getThumbnailBase();
@@ -21,16 +21,13 @@ export class SearchShowsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams
-      .subscribe(queryParams => {
-        if (!queryParams.query) {
-          this.router.navigate(['']);
-        } else {
-          this.searchQuery.next(queryParams.query)
-        }
-      });
+      .subscribe(queryParams => this.searchQuery.next(queryParams.query));
 
     this.movieDbService.search(this.searchQuery)
       .subscribe(searchResults => this.tvShows = searchResults);
+
+    this.movieDbService.getTvShows()
+      .subscribe(tvShows => this.tvShows = tvShows);
   }
 
 }

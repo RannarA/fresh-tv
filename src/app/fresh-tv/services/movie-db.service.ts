@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Injectable()
 export class MovieDbService {
@@ -14,7 +15,8 @@ export class MovieDbService {
   SEARCH_BASE_PATH = 'https://api.themoviedb.org/3/search/tv';
   SEARCH_BY_ID_PATH = 'https://api.themoviedb.org/3/tv/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   getThumbnailBase() {
     return this.IMAGE_BASE_PATH + 'w185';
@@ -49,6 +51,11 @@ export class MovieDbService {
   }
 
   searchShows(query) {
+    if (!query) {
+      this.router.navigate(['/search']);
+      return this.getTvShows();
+    }
+
     const params = new HttpParams()
       .set('api_key', THE_MOVIE_DB_API_KEY)
       .set('language', 'en-US')

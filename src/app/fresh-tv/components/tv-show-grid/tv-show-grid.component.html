@@ -1,6 +1,0 @@
-<mat-grid-list cols="8" rowHeight="2:3">
-  <mat-grid-tile *ngFor="let show of tvShows">
-    <app-add-show-card *ngIf="!isWatchlist" [imageBase]="imageBase" [showData]="show"></app-add-show-card>
-    <app-watchlist-card *ngIf="isWatchlist" [imageBase]="imageBase" [showData]="show"></app-watchlist-card>
-  </mat-grid-tile>
-</mat-grid-list>

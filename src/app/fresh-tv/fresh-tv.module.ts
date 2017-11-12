@@ -11,10 +11,8 @@ import {
 } from '@angular/material';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {MovieDbService} from './services/movie-db.service';
-import { TvShowGridComponent } from './components/tv-show-grid/tv-show-grid.component';
 import {RouterModule, Routes} from '@angular/router';
 import { TvShowsComponent } from './containers/tv-shows/tv-shows.component';
-import { DiscoverShowsComponent } from './containers/discover-shows/discover-shows.component';
 import { SearchShowsComponent } from './containers/search-shows/search-shows.component';
 import {WatchlistService} from './services/watchlist.service';
 import { WatchlistComponent } from './containers/watchlist/watchlist.component';
@@ -29,11 +27,10 @@ import {AuthErrorHandlerService} from './handler/auth-error-handler.service';
 import {TokenService} from './services/token.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/discover', pathMatch: 'full' },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'authenticate', component: AuthenticationComponent },
   { path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuardService] },
   { path: 'search', component: SearchShowsComponent },
-  { path: 'discover', component: DiscoverShowsComponent }
 ];
 
 @NgModule({
@@ -41,9 +38,7 @@ const appRoutes: Routes = [
     // components
     FreshTvComponent,
     ToolbarComponent,
-    TvShowGridComponent,
     TvShowsComponent,
-    DiscoverShowsComponent,
     SearchShowsComponent,
     WatchlistComponent,
     WatchlistCardComponent,

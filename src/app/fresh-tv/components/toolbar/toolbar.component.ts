@@ -9,7 +9,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class ToolbarComponent implements OnInit {
   constructor(private router: Router,
-              private authService: AuthService) { }
+              public authService: AuthService) { }
 
   search(queryText) {
     this.router.navigate(['/search'], {

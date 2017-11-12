@@ -1,1 +1,5 @@
-<app-tv-show-grid [tvShows]="tvShows" [imageBase]="getThumbnailBase()" [isWatchlist]=true></app-tv-show-grid>
+<mat-grid-list cols="8" rowHeight="2:3">
+  <mat-grid-tile *ngFor="let show of tvShows">
+    <app-watchlist-card [imageBase]="getThumbnailBase()" [showData]="show" (removeFromWatchList)="removeFromWatchList($event)" ></app-watchlist-card>
+  </mat-grid-tile>
+</mat-grid-list>
